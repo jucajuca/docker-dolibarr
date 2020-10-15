@@ -35,7 +35,9 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_DATABASE: dolibarr
-
+        volumes:
+            - doli_db:/var/lib/mysql 
+            
     web:
         image: tuxgasy/dolibarr
         environment:
@@ -49,6 +51,12 @@ services:
             - "80:80"
         links:
             - mariadb
+        volumes:
+            - doli_docs:/var/www/documents
+
+volumes:
+  doli_docs:
+  doli_db:
 ```
 
 Then run all services `docker-compose up -d`. Now, go to http://0.0.0.0 to access to the new Dolibarr installation.
