@@ -22,6 +22,8 @@ services:
             MYSQL_DATABASE: dolibarr
         networks:
             - internal-pod
+        volumes:
+            - doli_db:/var/lib/mysql            
 
     web:
         build:
@@ -42,3 +44,12 @@ services:
         networks:
             - internal-pod
             - external-pod
+        volumes:
+            - doli_docs:/var/www/documents
+            
+volumes:
+  doli_docs:
+  doli_db:
+
+  
+  
